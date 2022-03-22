@@ -32,11 +32,17 @@ colorscheme murphy   " 修改配色
 set foldmethod=syntax
 "set foldmethod=marker
 
+set number      " 显示行号
+set hlsearch    " 高亮搜索结果
 
 
 
-
-
+" 插件管理
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    " autocmd 
+endif
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -58,7 +64,7 @@ call plug#begin()
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-default branch
@@ -76,8 +82,11 @@ call plug#begin()
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
-" 目录插件
-Plug 'preservim/nerdtree'
+" Run your favorite search tool from Vim, with an enhanced results list
+Plug 'mileszs/ack.vim'
+
+" 
+Plug 'easymotion/vim-easymotion'
 
 " Initialize plugin system
 call plug#end()
@@ -87,5 +96,5 @@ call plug#end()
 
 
 
-
+" 按键映射
 nnoremap <F3> :NERDTreeToggle<CR>

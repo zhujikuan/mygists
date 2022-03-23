@@ -5,18 +5,18 @@ packloadall "加载所有插件
 silent! helptags ALL  " 为所有插件加载帮助文档
 
 " 为swap文件指定统一存放位置
-"if !isdirectory("$HOME/.vim/swap")
-"    call mkdir("$HOME/.vim/swap","p")
+"if !isdirectory("~/.vim/swap")
+"    call mkdir("~/.vim/swap","p")
 "endif
-"set directory=#HOME/.vim/swap//   
+"set directory=~/.vim/swap//   
 set noswapfile
 
 " 为所有文件设置永久性撤销
 set undofile
-if !isdirectory("$HOME/.vim/undodir")
-    call mkdir("$HOME/.vim/undodir","p")
+if !isdirectory("~/.vim/undodir")
+    call mkdir("~/.vim/undodir","p")
 endif
-set undodir="HOME/.vim/undodir"
+set undodir="~/.vim/undodir"
 
 " 缩进相关
 filetype plugin indent on "启用根据文件类型自动缩进
@@ -43,6 +43,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     " autocmd 
 endif
+
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -88,6 +89,11 @@ Plug 'mileszs/ack.vim'
 " 
 Plug 'easymotion/vim-easymotion'
 
+" let g:plug_timeout = 300
+" Plug 'Valloric/YouCompleteMe', {'do':'./install.py'}
+"
+Plug 'sjl/gundo.vim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -96,5 +102,17 @@ call plug#end()
 
 
 
+
 " 按键映射
+" · <space>表示空格。
+" · <esc>表示Esc键。
+" · <cr>和<enter>表示Enter键。
+" · <tab>表示制表符Tab键。
+" · bs表示退格键。
+" · <up>、<down>、<left>和<right>表示箭头键。
+" · <pageup>、<pagedown>表示上下翻页键。
+" · <f1>～<f12>表示12个功能键。
+" · <home>、<insert>、<del>和<end>分别表示Home、Insert、Delete和End键
+let mapleader = "\<space>" " 将先导键映射为空格键
+noremap <leader>wq :wq<cr>
 nnoremap <F3> :NERDTreeToggle<CR>

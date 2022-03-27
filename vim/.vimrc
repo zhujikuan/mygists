@@ -1,8 +1,8 @@
 set nocompatible     " vim运行在兼容模式
 set backspace=2      " 在大多数终端修正backspace的行为
 syntax on            " 支持语法高亮显示
-packloadall "加载所有插件
-silent! helptags ALL  " 为所有插件加载帮助文档
+set number      " 显示行号
+set hlsearch    " 高亮搜索结果
 
 " 为swap文件指定统一存放位置
 "if !isdirectory("~/.vim/swap")
@@ -13,9 +13,9 @@ set noswapfile
 
 " 为所有文件设置永久性撤销
 set undofile
-if !isdirectory("~/.vim/undodir")
-    call mkdir("~/.vim/undodir","p")
-endif
+" if !isdirectory("~/.vim/undodir")
+"    call mkdir("~/.vim/undodir","p")
+" endif
 set undodir="~/.vim/undodir"
 
 " 缩进相关
@@ -25,16 +25,8 @@ set shiftwidth=4     "用于自动缩进的空格数
 set expandtab        "将制表符tab展开为空格
 set tabstop=4        "要计算的空格数
 
-" 美化
-colorscheme murphy   " 修改配色
-
 
 set foldmethod=syntax
-"set foldmethod=marker
-
-set number      " 显示行号
-set hlsearch    " 高亮搜索结果
-
 
 
 " 插件管理
@@ -45,63 +37,29 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-" Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Using a non-default branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-
-" Run your favorite search tool from Vim, with an enhanced results list
-Plug 'mileszs/ack.vim'
-
 " 
 Plug 'easymotion/vim-easymotion'
-
-" let g:plug_timeout = 300
-" Plug 'Valloric/YouCompleteMe', {'do':'./install.py'}
+" 主题插件
+Plug 'ghifarit53/tokyonight-vim'
 "
-Plug 'sjl/gundo.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
 
 
-
-
-
-
+" 主题美化
+" https://github.com/ghifarit53/tokyonight-vim
+set background=dark
+set termguicolors
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
 
 " 按键映射
 " · <space>表示空格。
@@ -113,6 +71,21 @@ call plug#end()
 " · <pageup>、<pagedown>表示上下翻页键。
 " · <f1>～<f12>表示12个功能键。
 " · <home>、<insert>、<del>和<end>分别表示Home、Insert、Delete和End键
-let mapleader = "\<space>" " 将先导键映射为空格键
+let mapleader = "\<SPACE>" " 将先导键映射为空格键
 noremap <leader>wq :wq<cr>
 nnoremap <F3> :NERDTreeToggle<CR>
+nnoremap <F8> :PlugInstall<CR>
+" noremap <w-h> :vertical resize +1<CR>
+" noremap <w-l> :vertical resize -1<CR>
+
+
+
+" vim-which-key setting
+" https://github.com/liuchengxu/vim-which-key
+" By default timeoutlen is 1000 ms
+set timeoutlen=500
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+" coc.vim setting
+"
+

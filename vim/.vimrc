@@ -2,6 +2,11 @@ set nocompatible     " vim运行在兼容模式
 set backspace=2      " 在大多数终端修正backspace的行为
 syntax on            " 支持语法高亮显示
 set number      " 显示行号
+set relativenumber      " 显示行号
+set ruler
+set showmode
+set showcmd
+set wildmenu
 set hlsearch    " 高亮搜索结果
 
 " 为swap文件指定统一存放位置
@@ -29,7 +34,9 @@ set tabstop=4        "要计算的空格数
 set foldmethod=syntax
 
 
-" 插件管理
+" =====================================================
+" Plug Management
+" =====================================================
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -41,12 +48,15 @@ call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" 
+"  跳转插件
 Plug 'easymotion/vim-easymotion'
+
 " 主题插件
 Plug 'ghifarit53/tokyonight-vim'
 "
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'preservim/tagbar'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
@@ -55,7 +65,6 @@ call plug#end()
 " 主题美化
 " https://github.com/ghifarit53/tokyonight-vim
 set background=dark
-set termguicolors
 set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
@@ -73,19 +82,16 @@ colorscheme tokyonight
 " · <home>、<insert>、<del>和<end>分别表示Home、Insert、Delete和End键
 let mapleader = "\<SPACE>" " 将先导键映射为空格键
 noremap <leader>wq :wq<cr>
+nnoremap <F2> :TagbarToggle<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F8> :PlugInstall<CR>
-" noremap <w-h> :vertical resize +1<CR>
-" noremap <w-l> :vertical resize -1<CR>
-
+" noremap wh :vertical resize +1<CR>
+" noremap wl :vertical resize -1<CR>
 
 
 " vim-which-key setting
 " https://github.com/liuchengxu/vim-which-key
 " By default timeoutlen is 1000 ms
-set timeoutlen=500
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
 " coc.vim setting
 "
 

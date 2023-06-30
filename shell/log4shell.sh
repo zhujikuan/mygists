@@ -1,5 +1,11 @@
 #!/bin/bash
 
+LOG_FILE="/output.log"
+
+# 将标准输出和标准错误都重定向到 LOG_FILE 文件中
+exec &>${LOG_FILE}
+
+
 # 日志级别
 LOG_LEVEL="DEBUG"
 

@@ -2,7 +2,7 @@
 
 # 让脚本单例模式，来自stackoverflow
 
-SINGLETON_LOCK_FILE=/root/my_script.lock
+SINGLETON_LOCK_FILE=/tmp/${0##*/}.lck
 SINGLETON_WAITA_TIME=12
 
 get_singleton_lock() {
